@@ -1,4 +1,7 @@
+
 import java.util.*
+import kotlin.concurrent.thread
+import kotlin.concurrent.timerTask
 
 fun main(args: Array<String>) {
 
@@ -9,25 +12,93 @@ fun main(args: Array<String>) {
     // casting, notice the single quotes
     println("A to Int -> ${'A'.toInt()}")
 
+    //.bounce is a custom extension to the string object
     println("hello".bounce(" world"))
 
+
+    // multiline comment
+    var s = """Hello
+            World"""
+    println(s)
+
+    // kotlin string templates can contain logic including if statements
     println("1 + 2 = ${1 + 2}")
+    println("1 + 2 = ${if ((1 + 2) > 2) "this" else "that"}")
+
+    println("=============================================")
 
     var str = " this is quote a oibf  string hellow world"
     var str1 = " this is quote "
     var str2 = " this is quote a oibf  string hellow world"
     var str3 = "ggggggggggggggg"
 
+
+    // In Kotlin, if is an expression, i.e. it returns a value and a statement
+    // Therefore there is no ternary operator (condition ? then : else)
+
+    /*
+    // Traditional usage
+    var max = a
+    if (a < b) max = b
+
+    // With else
+        var max: Int
+        if (a > b) {
+            max = a
+        } else {
+            max = b
+        }
+
+    // As expression
+        val max = if (a > b) a else b
+
+
+
+
+
+
+     when (x) {
+        1 -> print("x == 1")
+        2 -> print("x == 2")
+        else -> { // Note the block
+            print("x is neither 1 nor 2")
+        }
+    }
+
+    when (x) {
+        0, 1 -> print("x == 0 or x == 1")
+        else -> print("otherwise")
+    }
+
+
+    when (x) {
+        in 1..10 -> print("x is in the range")
+        in validNumbers -> print("x is valid")
+        !in 10..20 -> print("x is outside the range")
+        else -> print("none of the above")
+    }
+    */
+
     println(str.dropLast(5))
     println("${str.subSequence(5, 10)}")
     println(str.compareTo(str1))
     println(str.compareTo(str2))
     println(str.compareTo(str3))
-    println(str.equals(str1))
+
+    // equality
+    // Structural equality == (is this preferred over equal()?)
+    // Referential equality === (two references point to the same object);
+
+    println("referential test -> ${if (str === str1) "same strings" else "different strings"}")
+
+    println(str == str1)
+    println(str.equals(str1, true)) // ignores case
 
 
+    // ranges
     val letters = 'A'..'Z'
     val numbers = 1..30
+    //val mixed = 'A'..25 incorrect, can't mix types
 
     for (x in letters) print(x)
 
@@ -41,10 +112,14 @@ fun main(args: Array<String>) {
     println(numbers)
 
 
+    // singleton declared outside of the main method
     var first = Singleton
     first.b = "hello singleton"
     var second = Singleton
     println(second.b)
+
+    // first and second are same object
+    println("referential test -> ${if (first === second) "same object" else "different objects"}")
 
     println(Singleton.bounce("test"))
 
@@ -58,28 +133,56 @@ fun main(args: Array<String>) {
         guess += 1
     }
 
-    println("num = $guess")
+    println("guessed random number = $guess")
 
 
     var arr3: Array<Int> = arrayOf(4, 6, 2, 6, 4, 6, 4, 99)
+    println("array ${arr3.contentToString()}")
+    var arr33 = arrayOf(4, 6, 2, 6, 4, 6, 4, 99)
+    println("array ${arr33.contentToString()}")
 
-    println(arr3)
+    // functions at the bottom of the file
+    println(add1(3, 4)) // 7
+    println(add2(3, 4)) // 7
+    println(subtract(20))  // 18
+    println(subtract(int2 = 5, int1 = 30)) // 25 -> defaults are 10 and 2
 
-    println(add1(3, 4))
-    println(add2(3, 4))
-    println(subtract(20))
-    println(subtract(int2 = 5, int1 = 30))
+    // If a function does not return any useful value, its return type is Unit.
+    // Unit is a type with only one value - Unit.
+    // This value does not have to be returned explicitly:
 
-    fun sayHello(name: String): Unit = println("Hello $name")
+    fun printHelloName1(name: String): Unit {
+        println("Hello $name")
+        return Unit // `return Unit` or `return` is optional
+    }
 
-    sayHello("jason")
+    // same as...
+
+    fun printHelloName4(name: String): Unit {
+        println("Hello $name")
+    }
+
+    // same as....
+
+    fun printHelloName2(name: String) {
+        println("Hello $name")
+    }
+
+    // same as...
+
+    fun printHelloName3(name: String): Unit = println("Hello $name")
+
+    printHelloName1("Jason")
+    printHelloName4("Jason")
+    printHelloName2("Jason")
+    printHelloName3("Jason")
 
     fun nextVals(num: Int): Pair<Int, Int> {
         return Pair(num + 1, num + 2)
     }
 
     val (nxt1, nxt2) = nextVals(21)
-    println("21 $nxt1 $nxt2")
+    println("21 $nxt1 $nxt2") // 21 22 23
 
     fun getSum(vararg nums: Int): Int {
         var sum = 0
@@ -87,17 +190,20 @@ fun main(args: Array<String>) {
         return sum
     }
 
-    println(getSum(1, 2, 3, 4, 5, 6, 7))
+    println(getSum(1, 2, 3, 4, 5, 6, 7)) // 28
 
-    // higher order functoins
-    //A higher-order function is a function that takes functions as parameters, or returns a function.
     val nums4 = 1..20
     val evenList = nums4.filter { it % 2 == 0 }
+    // notice use of 'it', can only be applied to single variable functions
     evenList.forEach { println(it) }
+
+    //same as....
+
     evenList.forEach { x -> println(x) }
 
-    //Lambda expressions and anonymous functions are 'function literals',
-    // i.e. functions that are not declared, but passed immediately as an expression.
+    // higher order functions
+    // A higher-order function is a function that takes functions as parameters, or returns a function.
+
     fun makeFunc(num1: Int): (Int) -> Int = { num2 -> num1 * num2 }
 
     var add3 = makeFunc(3)
@@ -108,21 +214,36 @@ fun main(args: Array<String>) {
 
     println("=============================================")
 
+    // Lambda expressions and anonymous functions are 'function literals',
+    // i.e. functions that are not declared, but passed immediately as an expression.
+
     // Lambda expression syntax
     val sumz = { x: Int, y: Int -> x + y }
 
-    println(sumz(2, 3))
+    println(sumz(2, 3)) // 5
+
+    val square = { number: Int -> number * number }
+    square(3) // 9
+
+
+    val oneVar: (Int) -> Int = { three -> three }
+    val multiple: (String, Int) -> String = { strng, int -> strng + int }
+    val noReturn: (Int) -> Unit = { num9 -> println(num9) }
+
+    println(oneVar(5)) // 5
+    println(multiple("hello ", 5)) // hello 5
+    noReturn(4) // 4
 
     val ints = arrayOf(-1, 2, -3, 4, -5, 6, -7, 8)
 
     // notice the use of 'it' here again
-    println(ints.filter { it > 0 })
+    println(ints.filter { it > 0 }) // [2, 4, 6, 8]
 
 
     val strings = arrayOf("hello", "jim", "jay", "hardold anj", "frank")
     val res = strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 
-    println(res)
+    println(res) // [FRANK, HELLO]
 
     //closures
     // A lambda expression or anonymous function can access its closure,
@@ -132,10 +253,10 @@ fun main(args: Array<String>) {
     ints2.filter { it > 0 }.forEach {
         sumt += it
     }
-    println("Total value - $sumt")
+    println("Total value - $sumt") //20
 
 
-    // type-safe builder example
+    // type-safe builder example, how do these compare in inline functions?
 
     class HTML {
         init {
@@ -176,16 +297,7 @@ fun main(args: Array<String>) {
     println(sum) // prints '9'
 
 
-    // Unit return type declaration is optional.
-    fun printHello(name: String?): Unit {
-        if (name != null)
-            println("Hello ${name}")
-        else
-            println("Hi there!")
-        // `return Unit` or `return` is optional
-    }
-
-    println(printHello("jason"))
+    // generic list example
 
     fun <T> asList(vararg ts: T): List<T> {
         val result = ArrayList<T>()
@@ -197,21 +309,25 @@ fun main(args: Array<String>) {
     val a = arrayOf(1, 2, 3, "bob")
     val list = asList(-1, 0, *a, 4, "hello")
 
-    println(list.toString())
+    // print contents of lists with toString()
+    // print contents of array with contentToString()
+    println(list.toString()) // [-1, 0, 1, 2, 3, bob, 4, hello]
 
     infix fun Int.shl(x: Int): Int {
         return x + 1
     }
 
     // calling the function using the infix notation
+    println(1.shl(2)) // 4
+
+    // is the same as...
+
     println(1 shl 2) // omitting the dot and the parentheses for the call
 
-    // is the same as
-    println(1.shl(2))
 
     var lst = mutableListOf("hejb", 12, 98, 34, "hhh", true)
     lst = addToList("gege", lst)
-    println(lst)
+    println(lst) // [hejb, 12, 98, 34, hhh, true, gege]
 
     val items = listOf(1, 2, 3, 4)
     println(items.filter { it % 2 == 0 })
@@ -220,29 +336,56 @@ fun main(args: Array<String>) {
     println(readWriteMap["foo"])  // prints "1"
 
     // generics extension function
+
     fun <T> T.basicToString(): String {
         return this.toString()
     }
 
-    var bool = true;
-    println(bool.basicToString())
+    var bool = true
+    println(bool.basicToString()) // true
 
     // collection operators
 
     // reduce -> Accumulates value starting with the first element and applying operation
     // from left to right to current accumulator value and each element.
-    var numbs = 1..20
-    println(numbs.reduce { x, y -> x + y })
+    val numbs = 1..20
+    println(numbs.reduce { x, y -> print("$x "); x + y })  // 210
+    // 1 3 6 10 15 21 28 36 45 55 66 78 91 105 120 136 153 171 190 210
 
-    println(numbs.fold(5) { x, y -> x + y }) // adds initial 5 to the above reduce
+    println(numbs.count()) // 20
 
-    println(numbs.any { it % 2 == 0 }) //returns boolean
+    numbs.forEachIndexed { index, value -> if (index == 0) println("position $index contains a $value") }
 
-    println(numbs.all { it % 2 == 0 }) //returns boolean
+    println(numbs.count { it % 2 == 0 }) // 10
 
-    println(numbs.filter { it > 17 }) //returns list
+    // fold is same as reduce but contains as initial value
+    println(numbs.fold(5) { x, y -> x + y }) // 215 - adds initial 5 to the above reduce
+
+    println(numbs.any { it % 2 == 0 }) //returns boolean -> true
+
+    println(numbs.all { it % 2 == 0 }) //returns boolean -> false
+
+    println(numbs.filter { it > 17 }) //returns list -> [18, 19, 20]
 
     println(numbs.map { it * 5 }) // returns new list with each item multiplied by 5
+    // [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
+
+    val arrrr6 = arrayOf(3, 4, 5, null, 10)
+
+    println(arrrr6.map { if (it != null) it * 3 else null }) // [9, 12, 15, null, 30]
+    println(arrrr6.mapNotNull { if (it != null) it * 3 else null }) // [9, 12, 15, 30]
+
+    // ALSO: drop, dropWHile, take, slice
+
+    val deepArray = arrayOf(
+            arrayOf(1),
+            arrayOf(2, 3),
+            arrayOf(4, 5, 6)
+    )
+
+    println(deepArray) // [[Ljava.lang.Integer;@cc34f4d
+    println(deepArray.contentToString()) // [[Ljava.lang.Integer;@cc34f4d, [Ljava.lang.Integer;@17a7cec2, [Ljava.lang.Integer;@65b3120a]
+    println(deepArray.flatten()) // [1, 2, 3, 4, 5, 6]
 
 
     var l1 = mutableListOf(1, 1, 2, 3, 4, 5, 6, 7, 8)
@@ -267,6 +410,9 @@ fun main(args: Array<String>) {
     println(l1) // empty list
 
     println("=============================================")
+
+
+    // maps
 
     var map = mutableMapOf<Int, Any?>(1 to "Jii", 2 to true, 3 to 33)
     map[4] = false
@@ -294,14 +440,12 @@ fun main(args: Array<String>) {
 
     var derived = Derived(22)
 
-
     var animal = Animal("jjas", 42)
     animal.info()
     println()
 
     var dog = Dog("bob", 45, "ukj")
     dog.info()
-
 
     var bird = Bird("tweeter", true)
     bird.fly(22)
@@ -321,14 +465,61 @@ fun main(args: Array<String>) {
 
     println(returnNull())
 
-    // !! operator forces it to compile and throw an NPE
-    //println(str22!!.length)
-
     // elvis (?:) operator
     var nullVal: String? = returnNull() ?: "No Name"
 
+
+    //val l: Int = if (b != null) b.length else -1
+
+    // becomes
+
+    //val l = b?.length ?: -1
+
+
     println(nullVal)
 
+
+    // safe calls using ?.
+    // bob?.department?.head?.name
+
+    // If either `person` or `person.department` is null, the function is not called:
+    // person?.department?.head = managersPool.getManager()
+
+
+    // using inline functions as declarative code
+    justTry {
+        var tNum = 22
+    }
+
+    // built in kotlin inline function
+    thread {
+        println("printed in a separate thread")
+    }
+
+    // A daemon thread is a thread that does not prevent the JVM from
+    // exiting when the program finishes but the thread is still running.
+
+    // true ends the process without waiting for the timer,
+    // false keeps the process open until the timer ends
+
+    val timer = Timer(false)
+
+    fun printMe() {
+        println("print me!!!!")
+        timer.cancel()
+    }
+
+    timer.schedule(timerTask { printMe() }, 2000)
+
+    // !! operator forces it to compile and throw an NPE
+    println(str22?.length) // null
+    println(str22!!.length) // throws exception
+
+}
+
+inline fun <T> justTry(block: () -> T) = try {
+    block()
+} catch (e: Throwable) {
 }
 
 interface Flyable {
