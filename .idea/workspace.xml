@@ -3,31 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="343f0be3-6697-446d-8ed8-c95b5ab3cbf8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/Animal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$$inlined$sortedBy$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$6$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$Base.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$Derived.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$HTML.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$sumz$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/Bird.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/Dog.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/Singleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt$main$18.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/KotlinPlayground/AppKt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -47,11 +24,12 @@
     <session id="1183002091">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
+          <entry key="project.closed" value="5" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -66,12 +44,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="7728" />
+          <entry key="kt" value="7829" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="7728" />
+          <entry key="Kotlin" value="7829" />
         </counts>
       </usages-collector>
     </session>
@@ -82,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/app.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="278">
-              <caret line="507" column="31" lean-forward="true" selection-start-line="507" selection-start-column="31" selection-end-line="507" selection-end-column="31" />
+              <caret line="472" lean-forward="true" selection-start-line="472" selection-end-line="472" />
               <folding>
                 <element signature="e#1#86#0" expanded="true" />
               </folding>
@@ -148,8 +126,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -255,11 +233,20 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2639485" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -270,8 +257,8 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32965517" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32965517" />
       <window_info anchor="bottom" id="Problems" order="8" weight="0.32965517" />
       <window_info anchor="bottom" id="SonarLint" order="9" weight="0.32965517" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.32965517" />
@@ -306,7 +293,7 @@
     <entry file="file://$PROJECT_DIR$/src/app.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="278">
-          <caret line="507" column="31" lean-forward="true" selection-start-line="507" selection-start-column="31" selection-end-line="507" selection-end-column="31" />
+          <caret line="472" lean-forward="true" selection-start-line="472" selection-end-line="472" />
           <folding>
             <element signature="e#1#86#0" expanded="true" />
           </folding>

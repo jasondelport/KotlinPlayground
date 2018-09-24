@@ -313,16 +313,16 @@ fun main(args: Array<String>) {
     // print contents of array with contentToString()
     println(list.toString()) // [-1, 0, 1, 2, 3, bob, 4, hello]
 
-    infix fun Int.shl(x: Int): Int {
+    infix fun Int.shld(x: Int): Int {
         return x + 1
     }
 
     // calling the function using the infix notation
-    println(1.shl(2)) // 4
+    println(1.shld(2)) // 4
 
     // is the same as...
 
-    println(1 shl 2) // omitting the dot and the parentheses for the call
+    println(1 shld 2) // omitting the dot and the parentheses for the call
 
 
     var lst = mutableListOf("hejb", 12, 98, 34, "hhh", true)
@@ -463,7 +463,7 @@ fun main(args: Array<String>) {
         return null
     }
 
-    println(returnNull())
+    println(returnNull()) // null
 
     // elvis (?:) operator
     var nullVal: String? = returnNull() ?: "No Name"
@@ -476,7 +476,7 @@ fun main(args: Array<String>) {
     //val l = b?.length ?: -1
 
 
-    println(nullVal)
+    println(nullVal) // No name
 
 
     // safe calls using ?.
@@ -495,6 +495,7 @@ fun main(args: Array<String>) {
     thread {
         println("printed in a separate thread")
     }
+    println("printed in the main thread")
 
     // A daemon thread is a thread that does not prevent the JVM from
     // exiting when the program finishes but the thread is still running.
@@ -512,7 +513,7 @@ fun main(args: Array<String>) {
     timer.schedule(timerTask { printMe() }, 2000)
 
     // !! operator forces it to compile and throw an NPE
-    println(str22?.length) // null
+    println("this print null -> ${str22?.length}") // null
     println(str22!!.length) // throws exception
 
 }
