@@ -9,6 +9,9 @@ fun main(args: Array<String>) {
 
     println("Hello World")
 
+    // http://kotlinlang.org/docs/reference/basic-types.html
+    // above includes types, casting, arrays, operations, string literals, string templates
+
     // casting, notice the single quotes
     println("A to Int -> ${'A'.toInt()}")
 
@@ -89,8 +92,12 @@ fun main(args: Array<String>) {
     }
     */
 
-    val abc = arrayOf(1, 20, 30, "bob", true)
+    val abc = arrayOf(1, 20, 30, "bob", intArrayOf(1,2,3,4), true)
 
+    // TYPES
+    // Any type represents the super type of all non-nullable types.
+    // Unit is the equivalent to void, It is returned implicitly. No need of a return statement.
+    // Nothing does not exist in Java. It is used when a function will never terminate normally and therefore a return value has no sense.
     fun <T> isMyNumber(x: T) : Any? {
         return if (x == 20) x
         else null
@@ -102,6 +109,7 @@ fun main(args: Array<String>) {
             is String -> println("is string")
             isMyNumber(x) -> println("my number!!!")
             is Int -> println("is int")
+            is IntArray -> println("is int array -> ${x.sum()}")
             else -> println("other -> $x")
         }
     }
