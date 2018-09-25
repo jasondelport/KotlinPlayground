@@ -12,6 +12,13 @@ fun main(args: Array<String>) {
     // casting, notice the single quotes
     println("A to Int -> ${'A'.toInt()}")
 
+    val singNum = "35"
+    val singNumInt = singNum.toIntOrNull()
+    println(singNumInt)
+    val singnum1 = 36
+    var singnumStr1 = singnum1.toString()
+    if (singnumStr1 is String) println("is a string")
+
     //.bounce is a custom extension to the string object
     println("hello".bounce(" world"))
 
@@ -74,10 +81,31 @@ fun main(args: Array<String>) {
     when (x) {
         in 1..10 -> print("x is in the range")
         in validNumbers -> print("x is valid")
+        parseInt(x) -> print("s encodes x")
+        x.isGreatNumber() -> print("great number!!")
+        is String -> print("is a string")
         !in 10..20 -> print("x is outside the range")
         else -> print("none of the above")
     }
     */
+
+    val abc = arrayOf(1, 20, 30, "bob", true)
+
+    fun <T> isMyNumber(x: T) : Any? {
+        return if (x == 20) x
+        else null
+    }
+
+    for (x in abc) {
+        when(x) {
+            in 1..3 -> println("in 1 to 3 range")
+            is String -> println("is string")
+            isMyNumber(x) -> println("my number!!!")
+            is Int -> println("is int")
+            else -> println("other -> $x")
+        }
+    }
+
 
     println(str.dropLast(5))
     println("${str.subSequence(5, 10)}")
