@@ -7,7 +7,33 @@ fun main(args: Array<String>) {
 
     // https://www.youtube.com/watch?v=H_oGi8uuDpA
 
+    // https://blog.philipphauer.de/idiomatic-kotlin-best-practices/
+
     println("Hello World")
+
+    val numbers = 1..30
+
+    // nice way to handle nulls and auto casting using the ?. and ?: operators
+    // very succinct
+    fun doit(name: String?) {
+        println("Size is ${name?.length ?: 0}")
+    }
+
+    doit("Harry")
+    doit(null)
+
+    // imperative vs functional programming
+    // imperative -> you tell what to do and how to do it
+    // declarative -> tell what and not how
+    // functional -> declarative + higher order functions
+
+    //Imperative programming: telling the "machine" how to do something, and as a result what you want to happen will happen.
+    //Declarative programming: telling the "machine"1 what you would like to happen, and let the computer figure out how to do it.
+
+    println(
+            numbers.filter { e -> e % 2 == 0}
+                    .map { it * 2}
+                    .reduce { total, e -> total + e }) // 480
 
     // http://kotlinlang.org/docs/reference/basic-types.html
     // above includes types, casting, arrays, operations, string literals, string templates
@@ -25,7 +51,10 @@ fun main(args: Array<String>) {
     //.bounce is a custom extension to the string object
     println("hello".bounce(" world"))
 
+    fun String.shout() = toUpperCase()
 
+    println("shout".shout())
+    
     // multiline comment
     var s = """Hello
             World"""
@@ -63,10 +92,6 @@ fun main(args: Array<String>) {
         val max = if (a > b) a else b
 
 
-
-
-
-
      when (x) {
         1 -> print("x == 1")
         2 -> print("x == 2")
@@ -92,21 +117,27 @@ fun main(args: Array<String>) {
     }
     */
 
-    val abc = arrayOf(1, 20, 30, "bob", intArrayOf(1,2,3,4), true)
+    val abc = arrayOf(1, 2,3, 20, 27, 28, 30, "bob", intArrayOf(1,2,3,4), true)
 
     // TYPES
     // Any type represents the super type of all non-nullable types.
     // Unit is the equivalent to void, It is returned implicitly. No need of a return statement.
     // Nothing does not exist in Java. It is used when a function will never terminate normally and therefore a return value has no sense.
     fun <T> isMyNumber(x: T) : Any? {
-        return if (x == 20) x
+        return if (x == 28) x
         else null
     }
 
+    // think of when statements as pattern matching
+
+    // https://www.programiz.com/kotlin-programming/when-expression
+
     for (x in abc) {
         when(x) {
-            in 1..3 -> println("in 1 to 3 range")
-            is String -> println("is string")
+            1 -> println("one")
+            2,3 -> println("two or three")
+            in 4..25 -> println("in 4 to 25 range")
+            is String -> println("is string with length ${x.length}")
             isMyNumber(x) -> println("my number!!!")
             is Int -> println("is int")
             is IntArray -> println("is int array -> ${x.sum()}")
@@ -133,7 +164,6 @@ fun main(args: Array<String>) {
 
     // ranges
     val letters = 'A'..'Z'
-    val numbers = 1..30
     //val mixed = 'A'..25 incorrect, can't mix types
 
     for (x in letters) print(x)
@@ -314,6 +344,25 @@ fun main(args: Array<String>) {
         // lambda with receiver begins here
         body()   // calling a method on the receiver object
     }
+
+
+
+    /*
+    https://kotlinlang.org/docs/reference/lambdas.html
+
+    // not the code: type is a function with ()
+    inline fun debug(code: () -> Unit){
+      if (BuildConfig.BUILD_TYPE == "debug"){
+        code()
+      }
+    }
+
+    debug{
+        showDebugTools()
+    }
+
+
+     */
 
     // tail recursive functions
 
@@ -504,6 +553,7 @@ fun main(args: Array<String>) {
     // elvis (?:) operator
     var nullVal: String? = returnNull() ?: "No Name"
 
+    println(nullVal) // No name
 
     //val l: Int = if (b != null) b.length else -1
 
@@ -511,15 +561,14 @@ fun main(args: Array<String>) {
 
     //val l = b?.length ?: -1
 
-
-    println(nullVal) // No name
-
-
     // safe calls using ?.
     // bob?.department?.head?.name
 
     // If either `person` or `person.department` is null, the function is not called:
     // person?.department?.head = managersPool.getManager()
+
+
+
 
 
     // using inline functions as declarative code
