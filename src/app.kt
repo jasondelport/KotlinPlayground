@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
     fun String.shout() = toUpperCase()
 
     println("shout".shout())
-    
+
     // multiline comment
     var s = """Hello
             World"""
@@ -64,58 +64,11 @@ fun main(args: Array<String>) {
     println("1 + 2 = ${1 + 2}")
     println("1 + 2 = ${if ((1 + 2) > 2) "this" else "that"}")
 
-    println("=============================================")
-
-    var str = " this is quote a oibf  string hellow world"
-    var str1 = " this is quote "
-    var str2 = " this is quote a oibf  string hellow world"
-    var str3 = "ggggggggggggggg"
-
 
     // In Kotlin, if is an expression, i.e. it returns a value and a statement
     // Therefore there is no ternary operator (condition ? then : else)
 
-    /*
-    // Traditional usage
-    var max = a
-    if (a < b) max = b
-
-    // With else
-        var max: Int
-        if (a > b) {
-            max = a
-        } else {
-            max = b
-        }
-
-    // As expression
-        val max = if (a > b) a else b
-
-
-     when (x) {
-        1 -> print("x == 1")
-        2 -> print("x == 2")
-        else -> { // Note the block
-            print("x is neither 1 nor 2")
-        }
-    }
-
-    when (x) {
-        0, 1 -> print("x == 0 or x == 1")
-        else -> print("otherwise")
-    }
-
-
-    when (x) {
-        in 1..10 -> print("x is in the range")
-        in validNumbers -> print("x is valid")
-        parseInt(x) -> print("s encodes x")
-        x.isGreatNumber() -> print("great number!!")
-        is String -> print("is a string")
-        !in 10..20 -> print("x is outside the range")
-        else -> print("none of the above")
-    }
-    */
+    println("===================WHEN==========================")
 
     val abc = arrayOf(1, 2,3, 20, 27, 28, 30, "bob", intArrayOf(1,2,3,4), true)
 
@@ -145,6 +98,12 @@ fun main(args: Array<String>) {
         }
     }
 
+    println("====================STRING========================")
+
+    var str = "this is quote of string hello world"
+    var str1 = str
+    var str2 = str
+    var str3 = str
 
     println(str.dropLast(5))
     println("${str.subSequence(5, 10)}")
@@ -161,7 +120,7 @@ fun main(args: Array<String>) {
     println(str == str1)
     println(str.equals(str1, true)) // ignores case
 
-
+    println("====================RANGES========================")
     // ranges
     val letters = 'A'..'Z'
     //val mixed = 'A'..25 incorrect, can't mix types
@@ -177,6 +136,7 @@ fun main(args: Array<String>) {
     println(letters)
     println(numbers)
 
+    println("====================SINGLETON========================")
 
     // singleton declared outside of the main method
     var first = Singleton
@@ -201,6 +161,7 @@ fun main(args: Array<String>) {
 
     println("guessed random number = $guess")
 
+    println("====================METHODS========================")
 
     var arr3: Array<Int> = arrayOf(4, 6, 2, 6, 4, 6, 4, 99)
     println("array ${arr3.contentToString()}")
@@ -278,7 +239,7 @@ fun main(args: Array<String>) {
 
     // could use some more examples here!!
 
-    println("=============================================")
+    println("===================LAMBDA==========================")
 
     // Lambda expressions and anonymous functions are 'function literals',
     // i.e. functions that are not declared, but passed immediately as an expression.
@@ -370,7 +331,7 @@ fun main(args: Array<String>) {
 
     println(findFixPoint())
 
-    println("=============================================")
+    println("===================COLLECTIONS==========================")
 
     fun sumNumbers(vararg numbers: Int): Int {
         return numbers.sum()
@@ -429,6 +390,7 @@ fun main(args: Array<String>) {
     var bool = true
     println(bool.basicToString()) // true
 
+    println("===================COLLECTION OPERATORS==========================")
     // collection operators
 
     // reduce -> Accumulates value starting with the first element and applying operation
@@ -494,7 +456,7 @@ fun main(args: Array<String>) {
     println("return Unit -> ${l1.clear()}")
     println(l1) // empty list
 
-    println("=============================================")
+    println("======================MAPS=======================")
 
 
     // maps
@@ -511,7 +473,15 @@ fun main(args: Array<String>) {
         println("$x $y")
     }
 
-    println("=============================================")
+    println("===================CLASS==========================")
+
+    // examples of class defs in kotlin
+
+    val car = Car()
+    println(car.yearSinceRegistration)
+    car.yearOfRegistration = 1976
+    println(car.yearSinceRegistration)
+
 
     // open keyword allows inheritance
     // By default, all classes in Kotlin are final and prevent inheritance
@@ -611,6 +581,16 @@ inline fun <T> justTry(block: () -> T) = try {
 interface Flyable {
     var flies: Boolean
     fun fly(miles: Int)
+}
+
+class Car {
+    var yearOfRegistration = 2010
+        set (value) {
+            if (value > 2018) throw RuntimeException("can't be in future")
+            field = value
+        }
+    val yearSinceRegistration
+        get() = 2018 - yearOfRegistration
 }
 
 class Bird constructor(var name: String, override var flies: Boolean = false) : Flyable {
