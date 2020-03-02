@@ -2,6 +2,7 @@
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.concurrent.timerTask
+import kotlin.properties.Delegates
 
 fun main(args: Array<String>) {
 
@@ -10,6 +11,14 @@ fun main(args: Array<String>) {
     // https://blog.philipphauer.de/idiomatic-kotlin-best-practices/
 
     println("Hello World")
+
+    val nullData = null
+
+    if (nullData is String) {
+        println("is a string")
+    } else {
+        println("not a string")
+    }
 
     val numbers = 1..30
 
@@ -483,8 +492,9 @@ fun main(args: Array<String>) {
     println(car.yearSinceRegistration)
 
 
-    // open keyword allows inheritance
+    // open keyword allows inheritance,
     // By default, all classes in Kotlin are final and prevent inheritance
+    // see https://medium.com/@rufuszh90/effective-java-item-17-design-and-document-for-inheritance-or-else-prohibit-it-be6041719fbc
     open class Base(p: Int) {
         init {
             println("base init $p")
@@ -504,6 +514,15 @@ fun main(args: Array<String>) {
 
     var bird = Bird("tweeter", true)
     bird.fly(22)
+
+    println("======================DELEGATION=======================")
+
+    println(lazyValue)
+    println(lazyValue)
+
+    val user = User()
+    user.name = "first"
+    user.name = "second"
 
     // NULLS
     // https://kotlinlang.org/docs/reference/null-safety.html
@@ -538,7 +557,9 @@ fun main(args: Array<String>) {
     // person?.department?.head = managersPool.getManager()
 
 
-
+    val numberrs = listOf("one", "two", "three", "four")
+    //println(numberrs.associateWith { it.length })
+    println(numberrs.associateBy { it.first().toUpperCase() })
 
 
     // using inline functions as declarative code
@@ -571,6 +592,18 @@ fun main(args: Array<String>) {
     println("this print null -> ${str22?.length}") // null
     println(str22!!.length) // throws exception
 
+}
+
+val lazyValue: String by lazy {
+    println("computed!")
+    "Hello"
+}
+
+class User {
+    var name: String by Delegates.observable("<no name>") {
+        prop, old, new ->
+        println("$old -> $new")
+    }
 }
 
 inline fun <T> justTry(block: () -> T) = try {
@@ -631,7 +664,7 @@ fun <T> addToList(item: T, list: MutableList<T>): MutableList<T> {
 }
 
 
-// singleton
+// the object keyword indicates a singleton
 object Singleton {
     init {
         println("init complete")
