@@ -6,8 +6,14 @@ import kotlin.properties.Delegates
 
 fun main(args: Array<String>) {
 
-    // https://www.youtube.com/watch?v=H_oGi8uuDpA
 
+    // https://batchofcode.com/2018/04/13/kotlin-best-practices.html
+    // https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84
+    // https://medium.com/default-to-open/kotlin-tips-singleton-utility-functions-group-object-initialization-and-more-27cdd6f63a41
+    // https://android.jlelse.eu/advanced-kotlin-tips-local-infix-and-inline-functions-tail-recursion-sealed-classes-and-more-2a53b00d5423
+    // https://ahsensaeed.com/ten-kotlin-list-tips-tricks/
+    // https://medium.com/gdg-istanbul/a-summary-of-kotlin-tips-from-31daysofkotlin-c2edfcd6d9e2
+    // https://www.youtube.com/watch?v=H_oGi8uuDpA
     // https://blog.philipphauer.de/idiomatic-kotlin-best-practices/
 
     println("Hello World")
@@ -466,7 +472,6 @@ fun main(args: Array<String>) {
     println(l1) // empty list
 
     println("======================MAPS=======================")
-
 
     // maps
 
