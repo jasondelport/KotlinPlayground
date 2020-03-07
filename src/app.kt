@@ -5,7 +5,9 @@ import kotlin.concurrent.timerTask
 import kotlin.properties.Delegates
 
 fun main(args: Array<String>) {
-
+    
+    // https://blog.kotlin-academy.com/effective-java-in-kotlin-item-1-consider-static-factory-methods-instead-of-constructors-8d0d7b5814b2?gi=616662dc090a
+    // https://blog.kotlin-academy.com/effective-java-in-kotlin-item-2-consider-a-builder-when-faced-with-many-constructor-parameters-1927e69608e1
     // https://www.rockandnull.com/kotlin-let/
     // https://batchofcode.com/2018/04/13/kotlin-best-practices.html
     // https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84
