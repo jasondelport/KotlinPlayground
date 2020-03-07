@@ -6,7 +6,7 @@ import kotlin.properties.Delegates
 
 fun main(args: Array<String>) {
 
-
+    // https://www.rockandnull.com/kotlin-let/
     // https://batchofcode.com/2018/04/13/kotlin-best-practices.html
     // https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84
     // https://medium.com/default-to-open/kotlin-tips-singleton-utility-functions-group-object-initialization-and-more-27cdd6f63a41
