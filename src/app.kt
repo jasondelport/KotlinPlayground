@@ -6,6 +6,7 @@ import kotlin.properties.Delegates
 
 fun main(args: Array<String>) {
     
+    // https://youtu.be/6P20npkvcb8
     // https://blog.kotlin-academy.com/effective-java-in-kotlin-item-1-consider-static-factory-methods-instead-of-constructors-8d0d7b5814b2?gi=616662dc090a
     // https://blog.kotlin-academy.com/effective-java-in-kotlin-item-2-consider-a-builder-when-faced-with-many-constructor-parameters-1927e69608e1
     // https://www.rockandnull.com/kotlin-let/
